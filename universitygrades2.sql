@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2026 at 02:17 PM
+-- Generation Time: Jun 11, 2026 at 03:43 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `universitygrades`
+-- Database: `universitygrades2`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,15 @@ CREATE TABLE `courses` (
   `course_name` varchar(100) NOT NULL,
   `credits` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_name`, `credits`) VALUES
+(101, 'Introduction to PHP', 4),
+(102, 'database', 5),
+(103, 'php', 2);
 
 -- --------------------------------------------------------
 
@@ -47,6 +56,13 @@ CREATE TABLE `enrollments` (
   `grade` varchar(3) DEFAULT 'N/A'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `enrollments`
+--
+
+INSERT INTO `enrollments` (`enrollment_id`, `student_id`, `course_id`, `instructor_id`, `grade`) VALUES
+(1, 3, 101, 2, 'N/A');
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +74,15 @@ CREATE TABLE `instructors` (
   `name` varchar(100) NOT NULL,
   `department` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `instructors`
+--
+
+INSERT INTO `instructors` (`instructor_id`, `name`, `department`) VALUES
+(2, 'Dr. John Smith', 'Computer Science'),
+(4, 'Dr. Jean Paul', 'BIT'),
+(6, 'agape TI', 'cs');
 
 -- --------------------------------------------------------
 
@@ -71,6 +96,17 @@ CREATE TABLE `students` (
   `last_name` varchar(50) NOT NULL,
   `major` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`student_id`, `first_name`, `last_name`, `major`) VALUES
+(1, 'Kevine', 'Mugisha', 'Computer Science'),
+(2, 'Eric', 'Manzi', 'Information Technology'),
+(3, 'Alice', 'Green', 'Software Engineering'),
+(4, 'Janvier', 'MPANO', 'IT'),
+(5, 'syve', 'Tha', '?????');
 
 -- --------------------------------------------------------
 
@@ -90,7 +126,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `email`, `password`, `role`) VALUES
-(1, 'admin@university.com', '$2y$10$7rXm7K365QwH7A7lA7vK1eX1A8SgA4F6gG8h9i0j1k2l3m4n5o6p7', 'admin');
+(1, 'admin@gmail.com', '$2y$10$vyFTvlEeWk7kYMUaC2hveushsWydkHL5HBhkoT6J7BrKIcttvEs1e', 'admin'),
+(2, 'j.smith@university.com', 'smith123', 'instructor'),
+(3, 'alice.green@student.com', 'green123', 'student'),
+(4, 'impjanvier20@gmail.com', '$2y$10$ucwRxkKVijKg4aIzoAuHD.V4F1dWk/87vzZCEmFAE0LNuifrQLIci', 'student'),
+(5, 'syvetha@gmail.com', '$2y$10$HPOIcMLc8XiSWO5lsng2zOz8Jc68uwka72P/33pM4S5p/7LaYbbwm', 'student'),
+(6, 'agape@gmail.com', '$2y$10$NFd6WZ3XGDILXnT0mhyh5eUYsffwAHr44rjtWU1s6Q0fJFq4rNE/a', 'instructor'),
+(10, 'instructor@gmail.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'instructor'),
+(12, 'instructoor@gmail.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'instructor');
 
 --
 -- Indexes for dumped tables
@@ -138,19 +181,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `enrollments`
 --
 ALTER TABLE `enrollments`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

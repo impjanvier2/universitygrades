@@ -1,19 +1,15 @@
 <?php
-$servername = "127.0.0.1";
-$username = "root";
+$host = "127.0.0.1"; // Twakoresheje IP aho kuba localhost kwinda ibibazo bya port
+$user = "root";
 $password = "";
-$dbname = "UniversityGrades";
-$port = 3306;
+$database = "UniversityGrades2";
 
-try {
-    $conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn = new mysqli($host, $user, $password, $database);
+if($conn){
+    echo " ";
+}
 
-    if ($conn->connect_error) {
-        throw new Exception($conn->connect_error);
-    }
-
-    echo "Database connected successfully!";
-} catch (Exception $e) {
-    die("Database Connection Failed: " . $e->getMessage());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
