@@ -45,129 +45,157 @@ $gpa = $total_credits > 0 ? round($total_points / $total_credits, 2) : "N/A";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Profile</title>
     <style>
-        /* Modern Student Dashboard CSS */
-        :root {
-            --primary-color: #1e293b;    /* Slate 800 */
-            --secondary-color: #475569;  /* Slate 600 */
-            --success-bg: #f0fdf4;       /* Emerald 50 */
-            --success-border: #bbf7d0;   /* Emerald 200 */
-            --success-text: #166534;     /* Emerald 800 */
-            --danger-color: #ef4444;     /* Red 500 */
-            --danger-hover: #dc2626;     /* Red 600 */
-            --bg-color: #f8fafc;         /* Slate 50 */
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;     /* Slate 200 */
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 40px 20px;
-            color: var(--primary-color);
-            line-height: 1.5;
+            padding: 0;
         }
 
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1920') no-repeat center center/cover;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Full Screen Outer Wrapper */
+        .dashboard-wrapper {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Glassmorphic Dashboard Container */
         .container {
             max-width: 850px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
-                        0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border-color);
-            box-sizing: border-box;
+            width: 100%;
+            max-height: 90vh;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            overflow-y: auto;
         }
 
-        /* Clearfix layout for floats */
-        .container::after {
-            content: "";
-            clear: both;
-            display: table;
+        /* Custom Dynamic Scrollbar */
+        .container::-webkit-scrollbar {
+            width: 8px;
         }
-
-        h1, h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 6px;
-            display: inline-block;
-        }
-
-        .student-major {
-            color: var(--secondary-color);
-            font-size: 1.05rem;
-            margin-top: 0;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            font-size: 1.4rem;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        /* Premium GPA Banner Display */
-        .gpa-card {
-            padding: 20px 24px;
+        .container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            margin-bottom: 30px;
-            border: 1px solid var(--success-border);
-            background-color: var(--success-bg);
-            color: var(--success-text);
+        }
+        .container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        .container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Top Header Area */
+        .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .student-major {
+            color: #cbd5e1;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Modern Premium GPA Display Bar */
+        .gpa-card {
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.15);
+            color: #a7f3d0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
         }
 
         .gpa-label {
             font-size: 1.1rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .gpa-score {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 2.4rem;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        /* Transcript Table Styling */
+        /* Transcript Table Design */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
+            border-collapse: collapse;
+            text-align: left;
         }
 
         th, td {
             padding: 14px 18px;
-            text-align: left;
         }
 
         th {
-            background-color: #f1f5f9;
-            color: var(--secondary-color);
-            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         td {
-            border-bottom: 1px solid var(--border-color);
-            background-color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background-color: rgba(255, 255, 255, 0.02);
             font-size: 0.95rem;
+            color: #f1f5f9;
         }
 
         tr:last-child td {
@@ -175,73 +203,96 @@ $gpa = $total_credits > 0 ? round($total_points / $total_credits, 2) : "N/A";
         }
 
         tr:hover td {
-            background-color: #f8fafc;
+            background-color: rgba(255, 255, 255, 0.06);
         }
 
-        /* Grade Box Styling */
+        /* Premium Badge for Grade Display */
         .badge-grade {
-            background-color: #f1f5f9;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.95rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
             display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
         }
 
-        /* Action Buttons */
+        /* Action Logout Button */
         .logout-btn {
-            float: right;
-            background-color: var(--danger-color);
+            background-color: #ef4444;
             color: #ffffff;
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            margin-top: 5px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
         }
 
         .logout-btn:hover {
-            background-color: var(--danger-hover);
+            background-color: #dc2626;
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+            transform: translateY(-1px);
         }
 
         .logout-btn:active {
-            transform: scale(0.98);
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .logout-btn { align-self: flex-end; }
+            .gpa-card { flex-direction: column; text-align: center; gap: 5px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <a href="logout.php" class="logout-btn">Logout</a>
-    <h1>Welcome, <?php echo htmlspecialchars($profile['first_name'] . " " . $profile['last_name']); ?></h1>
-    <p class="student-major"><strong>Enrolled Major Branch:</strong> <?php echo htmlspecialchars($profile['major']); ?></p>
-    
-    <div class="gpa-card">
-        <span class="gpa-label">Calculated Cumulative GPA</span>
-        <span class="gpa-score"><?php echo $gpa; ?></span>
+<div class="dashboard-wrapper">
+
+    <div class="container">
+        
+        <div class="dashboard-header">
+            <h1>Welcome, <?php echo htmlspecialchars($profile['first_name'] . " " . $profile['last_name']); ?></h1>
+            <a href="logout.php" class="logout-btn">Logout</a>
+        </div>
+        
+        <span class="student-major"><strong>Enrolled Major Branch:</strong> <?php echo htmlspecialchars($profile['major']); ?></span>
+        
+        <div class="gpa-card">
+            <span class="gpa-label">Calculated Cumulative GPA</span>
+            <span class="gpa-score"><?php echo $gpa; ?></span>
+        </div>
+
+        <h2>Your Complete Academic Transcript Record</h2>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Nomenclature</th>
+                        <th>Weight Credits</th>
+                        <th>Final Grade Mark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($rows as $row): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['course_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['credits']); ?></td>
+                        <td><span class="badge-grade"><?php echo htmlspecialchars($row['grade']); ?></span></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        
     </div>
 
-    <h2>Your Complete Academic Transcript Record</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Course Nomenclature</th>
-                <th>Weight Credits</th>
-                <th>Final Grade Mark</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($rows as $row): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($row['course_name']); ?></td>
-                <td><?php echo htmlspecialchars($row['credits']); ?></td>
-                <td><span class="badge-grade"><?php echo htmlspecialchars($row['grade']); ?></span></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 </div>
 
 </body>

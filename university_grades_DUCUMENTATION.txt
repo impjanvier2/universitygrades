@@ -1,0 +1,96 @@
+ 
+
+UNIVERSITY GRADES MANAGEMENT SYSTEM
+A Web-based Application for Academic Record and Performance Tracking
+
+Members:
+- IMPANO Janvier 1CUR26AK011851
+- Fiston 
+- UMUTONIWASE Agape 
+-Syvetha IBYISHAKA UWABABYEYI
+-MURERWA
+-IMMACULE
+-THEO
+
+Lecturer: Lengo
+Date: June 2026
+
+1. INTRODUCTION
+The University Grades Management System is a web-based application designed to manage academic records in higher learning institutions. It replaces manual methods such as spreadsheets and paper files with a centralized digital system.
+
+The system is built on a relational database with five main entities:
+- Users: stores login credentials and access roles.
+- Students: stores student personal and academic information.
+- Instructors: stores staff details and departments.
+- Courses: stores course information.
+- Enrollments: links students, courses, instructors, and grades.
+
+The system uses role-based access control so that:
+- Administrators manage users and system data.
+- Instructors manage and update grades.
+- Students view their academic performance.
+
+2. PROBLEM STATEMENT
+Traditional academic record systems have several problems:
+- Risk of data loss from physical files or local storage.
+- Errors in manual grade calculations.
+- Slow processing and release of results.
+- Weak security and lack of proper access control.
+- Difficulty in accessing academic records remotely.
+
+These issues make manual systems inefficient and unreliable for modern universities.
+
+3. OBJECTIVES
+
+General Objective:
+To develop a secure and efficient system for managing student academic records.
+
+Specific Objectives:
+- Allow instructors to enter and update grades digitally.
+- Allow students to view their results online in real time.
+- Automatically calculate GPA and performance results.
+- Allow administrators to manage users and system data securely.
+
+4. BENEFITS
+
+To Students:
+- Easy access to academic results anytime.
+- Ability to track performance in real time.
+- Improved transparency in grading.
+
+To Instructors:
+- Easier grade management.
+- Reduced calculation errors.
+- Less administrative workload.
+
+To Institution:
+- Improved data security.
+- Reduced paperwork costs.
+- More efficient academic operations.
+
+5. SYSTEM DESIGN AND IMPLEMENTATION
+
+5.1 Index Page and Login Page
+Firs Users show Index page then log in using email and password. The system redirects users based on their role.
+ 
+ 
+
+
+
+5.2 Admin Dashboard
+Admins manage users, students, instructors, and system data.
+ 
+
+5.3 Student Management
+Admins can add and update student records.
+ 
+
+5.4 Instructor Management
+Admins can register instructors and assign departments.
+ 
+
+5.5 Grade Management
+Instructors enter and update student grades for courses.
+
+5.6 Student Dashboard
+Students view courses, grades, and GPA.

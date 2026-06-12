@@ -2,7 +2,7 @@
 $host = "127.0.0.1"; // Twakoresheje IP aho kuba localhost kwinda ibibazo bya port
 $user = "root";
 $password = "";
-$database = "UniversityGrades2";
+$database = "UniversityGrades";
 
 $conn = new mysqli($host, $user, $password, $database);
 if($conn){
